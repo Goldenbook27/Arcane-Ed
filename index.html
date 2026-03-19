@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduQuest | Gamified Learning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
+  </head>
+  <body>
+    <div id="app" class="app-container">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <div class="logo">
+          <div class="logo-icon">🚀</div>
+          <h2>EduQuest</h2>
+        </div>
+        <nav>
+          <button class="nav-btn active" data-target="view-dashboard">
+            <span class="icon">📊</span> Dashboard
+          </button>
+          <button class="nav-btn" data-target="view-courses">
+            <span class="icon">📚</span> Modules
+          </button>
+          <button class="nav-btn" data-target="view-leaderboard">
+            <span class="icon">🏆</span> Leaderboard
+          </button>
+        </nav>
+        <div class="sidebar-footer">
+          <button class="nav-btn profile-btn" data-target="view-profile">
+            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Avatar" class="avatar-small">
+            <span>Profile</span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Topbar: User Stats -->
+        <header class="topbar">
+          <div class="level-badge">
+            <div class="level-info">
+              <span class="level-label">Level <span id="user-level">1</span></span>
+              <span class="xp-text"><span id="user-xp">0</span> / <span id="xp-target">100</span> XP</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar glow" id="xp-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          
+          <div class="stats-container">
+            <div class="stat-pill streak">
+              <span class="icon">🔥</span>
+              <span><span id="user-streak">3</span> Day Streak</span>
+            </div>
+            <div class="stat-pill coins">
+              <span class="icon">🪙</span>
+              <span id="user-coins">150</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Views Container -->
+        <div class="views-container">
+          <!-- Dashboard View -->
+          <section id="view-dashboard" class="view active fade-in">
+            <div class="hero-section">
+              <h1>Welcome back, <span class="highlight text-gradient">Scholar</span>!</h1>
+              <p>Ready to conquer today's challenges?</p>
+            </div>
+            
+            <div class="dashboard-grid">
+              <!-- Daily Quests -->
+              <div class="glass-card quests-card">
+                <div class="card-header">
+                  <h3>Daily Quests</h3>
+                  <span class="badge pulse">New</span>
+                </div>
+                <ul class="quest-list" id="quest-list">
+                  <!-- Injected via JS -->
+                </ul>
+              </div>
+
+              <!-- Streak & Activity -->
+              <div class="glass-card activity-card">
+                <h3>Learning Activity</h3>
+                <div class="activity-chart">
+                  <div class="chart-bars">
+                    <div class="bar" style="height: 40%"><span>M</span></div>
+                    <div class="bar" style="height: 70%"><span>T</span></div>
+                    <div class="bar highlight-bar" style="height: 100%"><span>W</span></div>
+                    <div class="bar empty" style="height: 10%"><span>T</span></div>
+                    <div class="bar empty" style="height: 10%"><span>F</span></div>
+                    <div class="bar empty" style="height: 10%"><span>S</span></div>
+                    <div class="bar empty" style="height: 10%"><span>S</span></div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Recent Achievements -->
+              <div class="glass-card achievements-card">
+                <h3>Recent Badges</h3>
+                <div class="badge-grid" id="badge-grid">
+                  <!-- Injected via JS -->
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Courses View (Map/Modules) -->
+          <section id="view-courses" class="view fade-in">
+            <div class="hero-section">
+              <h2>Learning Modules</h2>
+              <p>Unlock new skills to level up!</p>
+            </div>
+            <div class="modules-grid" id="modules-grid">
+              <!-- Injected via JS -->
+            </div>
+          </section>
+
+          <!-- Leaderboard View -->
+          <section id="view-leaderboard" class="view fade-in">
+             <div class="hero-section">
+              <h2>Top Scholars <span class="icon">👑</span></h2>
+              <p>Compete with peers and climb the ranks.</p>
+            </div>
+            <div class="glass-card leaderboard-card">
+              <table class="leaderboard-table" id="leaderboard-table">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Student</th>
+                    <th>Level</th>
+                    <th>XP</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="view-profile" class="view fade-in">
+            <div class="hero-section">
+              <h2>Your Profile</h2>
+            </div>
+             <div class="glass-card profile-details">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Avatar" class="avatar-large">
+                <h3 class="text-gradient">Felix Scholar</h3>
+                <p>Member since: Sept 2023</p>
+             </div>
+          </section>
+        </div>
+      </main>
+
+      <!-- Toast Notifications Container -->
+      <div id="toast-container" class="toast-container"></div>
+      
+      <!-- Modal Overlay -->
+      <div class="modal-overlay" id="modal-overlay">
+        <div class="glass-card modal" id="challenge-modal">
+          <div class="modal-header">
+            <h2 id="modal-title">Challenge Title</h2>
+            <button class="close-btn" id="close-modal">&times;</button>
+          </div>
+          <div class="modal-body" id="modal-body">
+            <p>Challenge content goes here.</p>
+            <div class="options-grid" id="challenge-options"></div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" id="submit-challenge">Submit Answer</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Confetti Canvas -->
+      <canvas id="confetti-canvas"></canvas>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  </body>
+</html>
